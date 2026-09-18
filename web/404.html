@@ -1,29 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Livre</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obra Livre</title>
 
     <script>
-        const path = window.location.pathname;
-
-        if (path.startsWith('/livre/')) {
-          const destino =
-            '/livre/?redirect=' +
-            encodeURIComponent(
-              path.substring('/livre'.length) +
-              window.location.search +
-              window.location.hash
-            );
-
-          window.location.replace(destino);
-        } else {
-          window.location.replace('/livre/');
-        }
+        // Guarda a rota solicitada pelo GitHub Pages
+        // para que o Flutter possa restaurá-la.
+        sessionStorage.redirect = location.href;
     </script>
+
+    <meta http-equiv="refresh" content="0;URL='/livre/'">
 </head>
 
 <body>
-<p>A carregar o Livre...</p>
+<p>A carregar Obra Livre...</p>
 </body>
 </html>

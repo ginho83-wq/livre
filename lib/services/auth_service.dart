@@ -2,78 +2,21 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
   AuthService._();
+  static final AuthService instancia = AuthService._();
 
-  static final AuthService instancia =
-  AuthService._();
+  final SupabaseClient _client = Supabase.instance.client;
 
-  final SupabaseClient _supabase =
-      Supabase.instance.client;
+  bool get estaAutenticado => _client.auth.currentSession != null;
 
-  // ============================================================
-  // USUÁRIO ATUAL
-  // ============================================================
-
-  User? get usuarioAtual {
-    return _supabase.auth.currentUser;
+  Future<void> login(String email, String senha) async {
+    await _client.auth.signInWithPassword(email: email, password: senha);
   }
 
-  // ============================================================
-  // EVENTOS DE AUTENTICAÇÃO
-  // ============================================================
-
-  Stream<AuthState> get eventosAuth {
-    return _supabase.auth.onAuthStateChange;
+  Future<void> cadastro(String email, String senha) async {
+    await _client.auth.signUp(email: email, password: senha);
   }
 
-  // ============================================================
-  // LOGIN EMAIL
-  // ============================================================
-
-  Future<void> entrarComEmail({
-    required String email,
-    required String senha,
-  }) async {
-    await _supabase.auth.signInWithPassword(
-      email: email.trim(),
-      password: senha,
-    );
-  }
-
-  // ============================================================
-  // CRIAR CONTA
-  // ============================================================
-
-  Future<void> criarConta({
-    required String email,
-    required String senha,
-  }) async {
-    await _supabase.auth.signUp(
-      email: email.trim(),
-      password: senha,
-      emailRedirectTo:
-      '${Uri.base.origin}/livre/auth/callback',
-    );
-  }
-
-  // ============================================================
-  // LOGIN GOOGLE
-  // ============================================================
-
-  Future<void> entrarComGoogle() async {
-    final redirectUrl =
-        '${Uri.base.origin}/livre/auth/callback';
-
-    await _supabase.auth.signInWithOAuth(
-      OAuthProvider.google,
-      redirectTo: redirectUrl,
-    );
-  }
-
-  // ============================================================
-  // SAIR
-  // ============================================================
-
-  Future<void> sair() async {
-    await _supabase.auth.signOut();
+  Future<void> logout() async {
+    await _client.auth.signOut();
   }
 }
