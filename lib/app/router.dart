@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../pages/home_page.dart';
 import '../pages/login_page.dart';
 import '../pages/cadastro_page.dart';
+import '../pages/auth_callback_page.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/',
@@ -12,13 +13,20 @@ final GoRouter router = GoRouter(
       path: '/',
       builder: (context, state) => const HomePage(),
     ),
+
     GoRoute(
       path: '/login',
       builder: (context, state) => const LoginPage(),
     ),
+
     GoRoute(
       path: '/cadastro',
       builder: (context, state) => const CadastroPage(),
+    ),
+
+    GoRoute(
+      path: '/auth/callback',
+      builder: (context, state) => const AuthCallbackPage(),
     ),
   ],
 );

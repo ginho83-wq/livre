@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
+
+  Future<void> _entrarComGoogle() async {
+    await Supabase.instance.client.auth.signInWithOAuth(
+      OAuthProvider.google,
+      redirectTo: 'https://ginho83-wq.github.io/livre/auth/callback',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +28,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: [
                 const Text(
-                  'Entrar na Obra Livre',
+                  'Entrar na Livre',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -66,7 +74,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton.icon(
-                    onPressed: () {},
+                    onPressed: _entrarComGoogle,
                     icon: const Icon(Icons.login),
                     label: const Text(
                       'Continuar com Google',

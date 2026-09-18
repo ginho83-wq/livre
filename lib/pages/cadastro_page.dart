@@ -20,7 +20,7 @@ class CadastroPage extends StatelessWidget {
             child: Column(
               children: [
                 const Text(
-                  'Criar conta na Obra Livre',
+                  'Criar conta na Livre',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,

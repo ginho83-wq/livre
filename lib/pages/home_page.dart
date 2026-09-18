@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
               child: Row(
                 children: [
                   const Text(
-                    'Obra Livre',
+                    'Livre',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
