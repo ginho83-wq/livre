@@ -16,7 +16,7 @@ class App extends StatelessWidget {
           seedColor: Colors.deepPurple,
         ),
       ),
-      routerConfig: router,
+      routerConfig: appRouter,
     );
   }
 }

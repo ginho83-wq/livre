@@ -1,33 +1,29 @@
-<!DOCTYPE html><html lang="pt">
+<!DOCTYPE html>
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Livre</title><script>
-    (function () {
-        const pathname = window.location.pathname;
-        const search = window.location.search;
-        const hash = window.location.hash;
+    <title>Livre</title>
 
-        // Callback de autenticação:
-        // preservar a URL completa para o Supabase/Flutter.
-        if (pathname.endsWith('/auth/callback')) {
-            sessionStorage.setItem(
-                'flutter_redirect',
-                pathname + search + hash
+    <script>
+        const path = window.location.pathname;
+
+        if (path.startsWith('/livre/')) {
+          const destino =
+            '/livre/?redirect=' +
+            encodeURIComponent(
+              path.substring('/livre'.length) +
+              window.location.search +
+              window.location.hash
             );
+
+          window.location.replace(destino);
         } else {
-            // Outras rotas Flutter
-            sessionStorage.setItem(
-                'flutter_redirect',
-                pathname + search + hash
-            );
+          window.location.replace('/livre/');
         }
+    </script>
+</head>
 
-        // Voltar ao index do projeto.
-        window.location.replace('/livre/');
-    })();
-</script>
-
-</head><body>
-<p>A carregar Livre...</p>
+<body>
+<p>A carregar o Livre...</p>
 </body>
 </html>
