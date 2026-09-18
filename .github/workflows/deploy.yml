@@ -37,7 +37,7 @@ jobs:
         run: flutter pub get
 
       - name: Build Flutter Web
-        run: flutter build web --release --base-href /teste/
+        run: flutter build web --release --base-href /livre/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
